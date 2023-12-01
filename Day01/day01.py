@@ -18,7 +18,7 @@ def part1(filename):
     return ans
 
 
-def get_substring(input_line, is_end=False):
+def part2(filename):
     digit_dict = {
         "one": "1",
         "two": "2",
@@ -30,34 +30,27 @@ def get_substring(input_line, is_end=False):
         "eight": "8",
         "nine": "9",
     }
-    new_line_part = ""
-    replaced = False
-
-    for char in input_line:
-        new_line_part = new_line_part + char if not is_end else char + new_line_part
-
-        for k, v in digit_dict.items():
-            if k in new_line_part:
-                new_line_part = new_line_part.replace(k, v)
-                replaced = True
-                break
-        if replaced:
-            break
-    return new_line_part
-
-
-def part2(filename):
     p = Path(__file__).with_name(filename)
-    with p.open("r") as f:
+    ans = 0
+    with p.open() as f:
         lines = f.readlines()
-        total = 0
-        for line in lines:
-            new_line_start = get_substring(line, False)
-            new_line_end = get_substring(line[::-1], True)
-            new_line = new_line_start + new_line_end
-            digits = "".join([char for char in new_line if char.isdigit()])
-            total += int(digits[0] + digits[-1])
-        return total
+    for idx, word in enumerate(lines):
+        for key in digit_dict:
+            numTimes = word.count(key)
+            for _ in range(numTimes):
+                lines[idx] = lines[idx].replace(
+                    key, f"{key[:-1]}{digit_dict[key]}{key[-1:]}"
+                )
+    for line in lines:
+        for letter in line:
+            if letter.isdigit():
+                ans += int(letter) * 10
+                break
+        for letter in line[::-1]:
+            if letter.isdigit():
+                ans += int(letter)
+                break
+    return ans
 
 
 if __name__ == "__main__":
