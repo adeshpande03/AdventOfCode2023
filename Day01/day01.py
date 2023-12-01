@@ -2,20 +2,15 @@ from pathlib import Path
 
 
 def part1(filename):
-    ans = 0
     p = Path(__file__).with_name(filename)
     with p.open("r") as f:
         lines = f.readlines()
-    for line in lines:
-        for letter in line:
-            if letter.isdigit():
-                ans += int(letter) * 10
-                break
-        for letter in line[::-1]:
-            if letter.isdigit():
-                ans += int(letter)
-                break
-    return ans
+    return sum(
+        [
+            int(w[0] + w[-1])
+            for w in ["".join([d for d in i if d.isdigit()]) for i in lines]
+        ]
+    )
 
 
 def part2(filename):
@@ -31,26 +26,19 @@ def part2(filename):
         "nine": "9",
     }
     p = Path(__file__).with_name(filename)
-    ans = 0
     with p.open() as f:
         lines = f.readlines()
     for idx, word in enumerate(lines):
         for key in digit_dict:
-            numTimes = word.count(key)
-            for _ in range(numTimes):
-                lines[idx] = lines[idx].replace(
-                    key, f"{key[:-1]}{digit_dict[key]}{key[-1:]}"
-                )
-    for line in lines:
-        for letter in line:
-            if letter.isdigit():
-                ans += int(letter) * 10
-                break
-        for letter in line[::-1]:
-            if letter.isdigit():
-                ans += int(letter)
-                break
-    return ans
+            lines[idx] = lines[idx].replace(
+                key, f"{key[:-1]}{digit_dict[key]}{key[-1:]}"
+            )
+    return sum(
+        [
+            int(w[0] + w[-1])
+            for w in ["".join([d for d in i if d.isdigit()]) for i in lines]
+        ]
+    )
 
 
 if __name__ == "__main__":
