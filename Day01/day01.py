@@ -2,6 +2,7 @@ from pathlib import Path
 
 
 def part1(filename):
+    #this could be one line but its cursed enough as it is
     p = Path(__file__).with_name(filename)
     with p.open("r") as f:
         lines = f.readlines()
@@ -14,6 +15,7 @@ def part1(filename):
 
 
 def part2(filename):
+    # i could technically make this less lines it's just also cursed
     digit_dict = {
         "one": "1",
         "two": "2",
