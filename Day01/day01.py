@@ -1,7 +1,11 @@
+from pathlib import Path
+
+
 def part1(filename):
     ans = 0
-    with open(filename) as file:
-        lines = file.readlines()
+    p = Path(__file__).with_name(filename)
+    with p.open("r") as f:
+        lines = f.readlines()
     for line in lines:
         for letter in line:
             if letter.isdigit():
@@ -43,7 +47,8 @@ def get_substring(input_line, is_end=False):
 
 
 def part2(filename):
-    with open(filename) as f:
+    p = Path(__file__).with_name(filename)
+    with p.open("r") as f:
         lines = f.readlines()
         total = 0
         for line in lines:
@@ -56,5 +61,5 @@ def part2(filename):
 
 
 if __name__ == "__main__":
-    print(part1("./Day01/input.txt"))
-    print(part2("./Day01/input.txt"))
+    print(part1("input.txt"))
+    print(part2("input.txt"))
