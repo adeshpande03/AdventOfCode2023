@@ -2,27 +2,16 @@ from pathlib import Path
 from pprint import *
 
 
-def getColorDict(s):
-    d = dict()
-    s = s.split(", ")
-    for i in s:
-        i = i.split(" ")
-        num = int(i[0])
-        color = i[1]
-        d[color] = num
-    return d
-
-
 def part1(filename):
     p = Path(__file__).with_name(filename)
     with p.open("r") as f:
         lines = f.read().splitlines()
     subt = 0
     maxNumDict = {"blue": 14, "green": 13, "red": 12}
-    lines = [i.split(': ')[1:][0].split("; ") for i in lines]
+    lines = [i.split(": ")[1:][0].split("; ") for i in lines]
     for i in range(len(lines)):
         for j in range(len(lines[i])):
-            lines[i][j] = getColorDict(lines[i][j])
+            lines[i][j] = {k.split(" ")[1]: int(k.split(" ")[0]) for k in lines[i][j].split(", ")}
     for idx, game in enumerate(lines):
         for roll in game:
             if (
@@ -39,10 +28,12 @@ def part2(filename):
     p = Path(__file__).with_name(filename)
     with p.open("r") as f:
         lines = f.read().splitlines()
-    lines = [i.split(': ')[1:][0].split("; ") for i in lines]
+    lines = [i.split(": ")[1:][0].split("; ") for i in lines]
     for i in range(len(lines)):
         for j in range(len(lines[i])):
-            lines[i][j] = getColorDict(lines[i][j])
+            lines[i][j] = {
+                k.split(" ")[1]: int(k.split(" ")[0]) for k in lines[i][j].split(", ")
+            }
     ans = 0
     for game in lines:
         b, g, r = 0, 0, 0
