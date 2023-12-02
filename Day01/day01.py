@@ -3,8 +3,7 @@ from pathlib import Path
 
 def part1(filename):
     #this could be one line but its cursed enough as it is
-    p = Path(__file__).with_name(filename)
-    with p.open("r") as f:
+    with Path(__file__).with_name(filename).open("r") as f:
         lines = f.read().splitlines()
     return sum(
         [
@@ -27,8 +26,7 @@ def part2(filename):
         "eight": "8",
         "nine": "9",
     }
-    p = Path(__file__).with_name(filename)
-    with p.open() as f:
+    with Path(__file__).with_name(filename).open("r") as f:
         lines = f.read().splitlines()
     for idx, word in enumerate(lines):
         for key in digit_dict:

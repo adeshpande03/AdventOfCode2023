@@ -3,14 +3,12 @@ from pprint import *
 
 
 def part1(filename):
-    p = Path(__file__).with_name(filename)
-    with p.open("r") as f:
+    with Path(__file__).with_name(filename).open("r") as f:
         lines = f.read().splitlines()
-
+    return 0
 
 def part2(filename):
-    p = Path(__file__).with_name(filename)
-    with p.open("r") as f:
+    with Path(__file__).with_name(filename).open("r") as f:
         lines = f.read().splitlines()
     return 0
 
