@@ -5,7 +5,7 @@ def part1(filename):
     #this could be one line but its cursed enough as it is
     p = Path(__file__).with_name(filename)
     with p.open("r") as f:
-        lines = f.readlines()
+        lines = f.read().splitlines()
     return sum(
         [
             int(w[0] + w[-1])
@@ -29,7 +29,7 @@ def part2(filename):
     }
     p = Path(__file__).with_name(filename)
     with p.open() as f:
-        lines = f.readlines()
+        lines = f.read().splitlines()
     for idx, word in enumerate(lines):
         for key in digit_dict:
             lines[idx] = lines[idx].replace(
