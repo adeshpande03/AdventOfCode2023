@@ -2,20 +2,21 @@ from pathlib import Path
 from pprint import *
 
 
+def getColorDict(s):
+    d = dict()
+    s = s.split(", ")
+    for i in s:
+        i = i.split(" ")
+        num = int(i[0])
+        color = i[1]
+        d[color] = num
+    return d
+
+
 def part1(filename):
     p = Path(__file__).with_name(filename)
     with p.open("r") as f:
         lines = f.readlines()
-
-    def getColorDict(s):
-        d = dict()
-        s = s.split(", ")
-        for i in s:
-            i = i.split(" ")
-            num = int(i[0])
-            color = i[1]
-            d[color] = num
-        return d
 
     subt = 0
     maxNumDict = {"blue": 14, "green": 13, "red": 12}
@@ -45,7 +46,24 @@ def part2(filename):
     p = Path(__file__).with_name(filename)
     with p.open("r") as f:
         lines = f.readlines()
-    return 0
+    lines = [i.strip() for i in lines]
+    for i in range(len(lines)):
+        lines[i] = lines[i].split(": ")[1:]
+    lines = [i[0].split("; ") for i in lines]
+    for i in range(len(lines)):
+        for j in range(len(lines[i])):
+            lines[i][j] = getColorDict(lines[i][j])
+    lines.insert(0, [dict()])
+    ans = 0
+    for game in lines[:]:
+        b, g, r = 0, 0, 0
+        for roll in game:
+            b = max(b, roll.get("blue", 0))
+            g = max(g, roll.get("green", 0))
+            r = max(r, roll.get("red", 0))
+        ans += b * g * r
+
+    return ans
 
 
 if __name__ == "__main__":
