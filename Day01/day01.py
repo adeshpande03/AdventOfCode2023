@@ -2,7 +2,7 @@ from pathlib import Path
 
 
 def part1(filename):
-    #this could be one line but its cursed enough as it is
+    # this could be one line but its cursed enough as it is
     with Path(__file__).with_name(filename).open("r") as f:
         lines = f.read().splitlines()
     return sum(
@@ -28,11 +28,11 @@ def part2(filename):
     }
     with Path(__file__).with_name(filename).open("r") as f:
         lines = f.read().splitlines()
-    for idx, word in enumerate(lines):
-        for key in digit_dict:
-            lines[idx] = lines[idx].replace(
-                key, f"{key[:-1]}{digit_dict[key]}{key[-1:]}"
-            )
+    lines = [
+        lines[idx].replace(key, f"{key[:-1]}{digit_dict[key]}{key[-1:]}")
+        for key in digit_dict
+        for idx, word in enumerate(lines)
+    ]
     return sum(
         [
             int(w[0] + w[-1])

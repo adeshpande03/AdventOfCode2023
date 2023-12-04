@@ -7,12 +7,13 @@ def part1(filename):
         lines = f.read().splitlines()
     subt = 50 * 101
     maxNumDict = {"blue": 14, "green": 13, "red": 12}
-    lines = [i.split(": ")[1:][0].split("; ") for i in lines]
-    for i in range(len(lines)):
-        for j in range(len(lines[i])):
-            lines[i][j] = {
-                k.split(" ")[1]: int(k.split(" ")[0]) for k in lines[i][j].split(", ")
-            }
+    lines = [
+        [
+            {k.split(" ")[1]: int(k.split(" ")[0]) for k in element.split(", ")}
+            for element in line
+        ]
+        for line in [i.split(": ")[1:][0].split("; ") for i in lines]
+    ]
     for idx, game in enumerate(lines):
         for roll in game:
             if (
@@ -28,12 +29,13 @@ def part1(filename):
 def part2(filename):
     with Path(__file__).with_name(filename).open("r") as f:
         lines = f.read().splitlines()
-    lines = [i.split(": ")[1:][0].split("; ") for i in lines]
-    for i in range(len(lines)):
-        for j in range(len(lines[i])):
-            lines[i][j] = {
-                k.split(" ")[1]: int(k.split(" ")[0]) for k in lines[i][j].split(", ")
-            }
+    lines = [
+        [
+            {k.split(" ")[1]: int(k.split(" ")[0]) for k in element.split(", ")}
+            for element in line
+        ]
+        for line in [i.split(": ")[1:][0].split("; ") for i in lines]
+    ]
     ans = 0
     for game in lines:
         b, g, r = 0, 0, 0
