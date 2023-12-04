@@ -15,7 +15,7 @@ def part1(filename):
         for i in game[0]:
             if i.isdigit() and i in game[1]:
                 c += 1
-        ans += 2 ** (c - 1) if c > 0 else 0
+        ans += int(2 ** (c - 1))
     return ans
 
 
