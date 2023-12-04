@@ -32,7 +32,7 @@ def part2(filename):
         for i in lines[game][0]:
             c += 1 if i.isdigit() and i in lines[game][1] else 0
         for i in range(1, c + 1):
-            dp[game + i] += 1 * dp[game]
+            dp[game + i] += dp[game]
     return sum(dp)
 
 
