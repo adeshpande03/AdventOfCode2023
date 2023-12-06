@@ -31,22 +31,21 @@ def part1(filename):
 def part2(filename):
     with Path(__file__).with_name(filename).open("r") as f:
         lines = f.read()
-    maps = lines.split('\n\n')
+    maps = lines.split("\n\n")
     seeds = list(map(int, maps[0].split()[1:]))
     p = list(zip(seeds[::2], seeds[1::2]))
     for m in maps[1:]:
-        maps2 = [list(map(int, l.split()))
-                        for l in m.splitlines()[1:]]
+        maps2 = [list(map(int, l.split())) for l in m.splitlines()[1:]]
         nr = []
         for start, r_len in p:
             while r_len != 0:
                 mila = False
                 best = r_len
                 for e, st, length in maps2:
-                    if st <= start < st+length:
+                    if st <= start < st + length:
                         off = start - st
                         rl = min(length - off, r_len)
-                        nr.append((e+off, rl))
+                        nr.append((e + off, rl))
                         start += rl
                         r_len -= rl
                         mila = True
@@ -60,8 +59,8 @@ def part2(filename):
                     start += h
                     r_len -= h
         p = nr
+        print(p)
     return min(start for start, length in p)
-    
 
 
 if __name__ == "__main__":
