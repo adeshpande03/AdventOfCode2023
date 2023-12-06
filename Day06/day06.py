@@ -26,17 +26,12 @@ def part2(filename):
     with Path(__file__).with_name(filename).open("r") as f:
         lines = f.read().splitlines()
     lines = [list(map(str, i.split()[1:])) for i in lines]
-    i = [int(''.join(i)) for i in lines]
-    c = 0
-    n1 = 0
-    n2 = i[0]
-    while n2 > 0:
-        n1 += 1
-        n2 = i[0] - n1
-        if n1 * n2 > i[1]:
-            c += 1
-    return c
-
+    i = [int("".join(i)) for i in lines]
+    return int(
+        (i[0] + sqrt(i[0] ** 2 - 4 * i[1]) / 2)
+        - ((i[0] - sqrt(i[0] ** 2 - 4 * i[1]) / 2))
+        
+    )
 
 
 if __name__ == "__main__":
