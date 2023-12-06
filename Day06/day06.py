@@ -26,10 +26,7 @@ def part2(filename):
     with Path(__file__).with_name(filename).open("r") as f:
         lines = f.read().splitlines()
     lines = [list(map(str, i.split()[1:])) for i in lines]
-    lines = [int(''.join(i)) for i in lines]
-    i = lines
-    print(lines)
-    ans = 1
+    i = [int(''.join(i)) for i in lines]
     c = 0
     n1 = 0
     n2 = i[0]
@@ -38,8 +35,7 @@ def part2(filename):
         n2 = i[0] - n1
         if n1 * n2 > i[1]:
             c += 1
-    ans *= c
-    return ans
+    return c
 
 
 
