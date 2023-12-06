@@ -27,10 +27,10 @@ def part2(filename):
         lines = f.read().splitlines()
     lines = [list(map(str, i.split()[1:])) for i in lines]
     i = [int("".join(i)) for i in lines]
-    return int(
-        (i[0] + sqrt(i[0] ** 2 - 4 * i[1]) / 2)
-        - ((i[0] - sqrt(i[0] ** 2 - 4 * i[1]) / 2))
-        
+    return (
+        floor(i[0] + sqrt(i[0] ** 2 - 4 * i[1]) / 2)
+        - ceil((i[0] - sqrt(i[0] ** 2 - 4 * i[1]) / 2))
+        + 1
     )
 
 
