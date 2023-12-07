@@ -44,14 +44,14 @@ def part1(filename):
         else:
             high.append(i)
     ans = 0
-    five.sort(reverse=True, key=t)
-    four.sort(reverse=True, key=t)
-    full.sort(reverse=True, key=t)
-    thre.sort(reverse=True, key=t)
-    high.sort(reverse=True, key=t)
-    twop.sort(reverse=True, key=t)
-    onep.sort(reverse=True, key=t)
-    high.sort(reverse=True, key=t)
+    five.sort(reverse = True, key=t)
+    four.sort(reverse = True, key=t)
+    full.sort(reverse = True, key=t)
+    thre.sort(reverse = True, key=t)
+    high.sort(reverse = True, key=t)
+    twop.sort(reverse = True, key=t)
+    onep.sort(reverse = True, key=t)
+    high.sort(reverse = True, key=t)
     lines = five + four + full + thre + twop + onep + high
     for i, j in enumerate(lines):
         ans += (len(lines) - (i)) * j[1]
@@ -73,7 +73,6 @@ def part2(filename):
         g = "".join([j for j in s if j != "J"])
         ltr = max(h, key=g.count)
         s = s.replace("J", ltr)
-
         return r, s
 
     def l(r):
@@ -111,14 +110,14 @@ def part2(filename):
         else:
             high.append(i)
 
-    five.sort(reverse=True, key=l)
-    four.sort(reverse=True, key=l)
-    full.sort(reverse=True, key=l)
-    thre.sort(reverse=True, key=l)
-    high.sort(reverse=True, key=l)
-    twop.sort(reverse=True, key=l)
-    onep.sort(reverse=True, key=l)
-    high.sort(reverse=True, key=l)
+    five.sort(reverse = True, key=l)
+    four.sort(reverse = True, key=l)
+    full.sort(reverse = True, key=l)
+    thre.sort(reverse = True, key=l)
+    high.sort(reverse = True, key=l)
+    twop.sort(reverse = True, key=l)
+    onep.sort(reverse = True, key=l)
+    high.sort(reverse = True, key=l)
     lines = five + four + full + thre + twop + onep + high
 
     for i, j in enumerate(lines):
