@@ -9,15 +9,11 @@ def part1(filename):
     blankRows = []
     blankCols = []
     for i in range(len(lines)):
-        if lines[i].count("#") > 0:
-            continue
-        else:
+        if lines[i].count("#")  ==  0:
             blankRows.append(i)
     temp = list(zip(*(lines)))
     for i in range(len(temp)):
-        if temp[i].count("#") > 0:
-            continue
-        else:
+        if temp[i].count("#") == 0:
             blankCols.append(i)
     locs = []
     for i in range(len(lines)):
@@ -49,15 +45,11 @@ def part2(filename):
     blankRows = []
     blankCols = []
     for i in range(len(lines)):
-        if lines[i].count("#") > 0:
-            continue
-        else:
+        if lines[i].count("#") == 0:
             blankRows.append(i)
     temp = list(zip(*(lines)))
     for i in range(len(temp)):
-        if temp[i].count("#") > 0:
-            continue
-        else:
+        if temp[i].count("#") == 0:
             blankCols.append(i)
     locs = []
     for i in range(len(lines)):
