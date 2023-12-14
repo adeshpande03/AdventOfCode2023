@@ -60,10 +60,20 @@ def part2(filename):
             lines = new
         return tuple(lines)
 
-    for _ in range(1000):
+    seen = set(tuple(lines))
+    arr = [tuple(lines)]
+    i = 0
+    while True:
+        i += 1
         lines = cycle(tuple(lines))
-        
-    
+        if lines in seen:
+            break
+
+        seen.add(lines)
+        arr.append(lines)
+    f = arr.index(lines)
+    lines = arr[(10**9 - f) % (i - f) + f]
+
     lines = list(zip(*reversed(lines)))
     ans = 0
     for i in range(len(lines)):
