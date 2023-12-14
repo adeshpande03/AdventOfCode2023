@@ -36,6 +36,7 @@ def part1(filename):
 def part2(filename):
     with Path(__file__).with_name(filename).open("r") as f:
         lines = f.read().splitlines()
+
     @cache
     def cycle(lines):
         for _ in range(4):
@@ -58,6 +59,7 @@ def part2(filename):
                 new.append(tuple(temp[:-1]))
             lines = new
         return tuple(lines)
+
     d = dict()
     for _ in range(1000):
         lines = tuple(lines)
@@ -66,7 +68,7 @@ def part2(filename):
         else:
             d[lines] = tuple(cycle(lines))
             lines = tuple(cycle(lines))
-            
+
     lines = list(zip(*reversed(lines)))
     ans = 0
     for i in range(len(lines)):
