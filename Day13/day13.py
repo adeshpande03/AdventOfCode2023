@@ -8,7 +8,7 @@ def part1(filename):
         lines = f.read().split("\n\n")
     ps = list(map(str.splitlines, lines))
 
-    def f(p, s):
+    def solve(p, s):
         for i in range(1, len(p)):
             if (
                 sum(
@@ -22,7 +22,7 @@ def part1(filename):
         else:
             return 0
 
-    ans = sum(100 * f(p, 0) + f([*zip(*p)], 0) for p in ps)
+    ans = sum(100 * solve(p, 0) + solve([*zip(*p)], 0) for p in ps)
     return ans
 
 
@@ -31,7 +31,7 @@ def part2(filename):
         lines = f.read().split("\n\n")
     ps = list(map(str.splitlines, lines))
 
-    def f(p, s):
+    def solve(p, s):
         for i in range(1, len(p)):
             if (
                 sum(
@@ -45,7 +45,7 @@ def part2(filename):
         else:
             return 0
 
-    ans = sum(100 * f(p, 1) + f([*zip(*p)], 1) for p in ps)
+    ans = sum(100 * solve(p, 1) + solve([*zip(*p)], 1) for p in ps)
     return ans
 
 
