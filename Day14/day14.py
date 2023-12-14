@@ -60,15 +60,10 @@ def part2(filename):
             lines = new
         return tuple(lines)
 
-    d = dict()
     for _ in range(1000):
-        lines = tuple(lines)
-        if tuple(lines) in d:
-            lines = tuple(d[tuple(lines)])
-        else:
-            d[lines] = tuple(cycle(lines))
-            lines = tuple(cycle(lines))
-
+        lines = cycle(tuple(lines))
+        
+    
     lines = list(zip(*reversed(lines)))
     ans = 0
     for i in range(len(lines)):
