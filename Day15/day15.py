@@ -13,8 +13,7 @@ def part1(filename):
     def sha(s):
         v = 0
         for i in s:
-            v += ord(i)
-            v = (v * 17) % 256
+            v = ((v + ord(i)) * 17) % 256
         return v
 
     return sum(list(map(sha, [i.strip() for i in lines])))
@@ -29,8 +28,7 @@ def part2(filename):
     def sha(s):
         v = 0
         for i in s:
-            v += ord(i)
-            v = (v * 17) % 256
+            v = ((v + ord(i)) * 17) % 256
         return v
 
     for i in lines:
