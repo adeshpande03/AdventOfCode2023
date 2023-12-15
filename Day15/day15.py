@@ -42,8 +42,7 @@ def part2(filename):
                 del ans[enc][key]
 
         else:
-            key = i[0]
-            focal = i[1]
+            key, focal = i
             enc = sha(key)
             ans[enc][key] = focal
 
