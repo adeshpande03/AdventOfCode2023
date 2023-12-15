@@ -23,8 +23,7 @@ def part1(filename):
 def part2(filename):
     with Path(__file__).with_name(filename).open("r") as f:
         lines = f.read()
-    lines = lines.split(",")
-    lines = [i.strip() for i in lines]
+    lines = [i.strip() for i in lines.split(",")]
     ans = [OrderedDict() for _ in range(256)]
 
     def sha(s):
