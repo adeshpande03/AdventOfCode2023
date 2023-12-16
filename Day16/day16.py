@@ -35,15 +35,9 @@ def getHashtags(lines, y, x, dy, dx):
                 beams.extend([(newY, newX, 0, -1), (newY, newX, 0, 1)])
                 continue
         elif lines[newY][newX] == "\\":
-            if dX in [1, -1]:
-                dY, dX = dX, 0
-            else:
-                dY, dX = 0, dY
+            dY, dX = dX, dY
         elif lines[newY][newX] == "/":
-            if dX in [1, -1]:
-                dY, dX = -1 * dX, 0
-            else:
-                dY, dX = 0, -1 * dY
+            dY, dX = -1 * dX, -1 *dY
         beams.append((newY, newX, dY, dX))
     return sum([sum([1 for i in j if i == "#"]) for j in lines]) + len(mirs)
 
