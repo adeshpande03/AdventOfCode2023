@@ -47,9 +47,6 @@ def getHashtags(lines, y, x, dy, dx):
             else:
                 dY, dX = 0, -1 * dY
         beams.append((newY, newX, dY, dX))
-        for i in lines:
-            print("".join(i))
-        print("=" * 80)
     return sum([sum([1 for i in j if i == "#"]) for j in lines]) + len(mirs)
 
 
@@ -81,5 +78,5 @@ def part2(filename):
 
 
 if __name__ == "__main__":
-    print(part1("sample.txt"))
-    # print(part2("input.txt"))
+    print(part1("input.txt"))
+    print(part2("input.txt"))
