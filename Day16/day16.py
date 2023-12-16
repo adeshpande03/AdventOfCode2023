@@ -28,13 +28,11 @@ def getHashtags(lines, y, x, dy, dx):
             mirs.add(newPos)
         if lines[newY][newX] == "|":
             if dX in [1, -1]:
-                beams.append((newY, newX, 1, 0))
-                beams.append((newY, newX, -1, 0))
+                beams.extend([(newY, newX, -1, 0), (newY, newX, 1, 0)])
                 continue
         if lines[newY][newX] == "-":
             if dY in [1, -1]:
-                beams.append((newY, newX, 0, 1))
-                beams.append((newY, newX, 0, -1))
+                beams.extend([(newY, newX, 0, -1), (newY, newX, 0, 1)])
                 continue
         elif lines[newY][newX] == "\\":
             if dX in [1, -1]:
