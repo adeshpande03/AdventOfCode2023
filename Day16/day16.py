@@ -15,14 +15,12 @@ def getHashtags(lines, y, x, dy, dx):
             continue
         else:
             seen.add(i)
-
         if (
             0 <= curX < len(lines[0])
             and 0 <= curY < len(lines)
             and lines[curY][curX] == "."
         ):
             lines[curY][curX] = "#"
-
         newPos = newX, newY = curX + dX, curY + dY
         if newX in [-1, len(lines[0])] or newY in [-1, len(lines)]:
             continue
@@ -49,7 +47,9 @@ def getHashtags(lines, y, x, dy, dx):
             else:
                 dY, dX = 0, -1 * dY
         beams.append((newY, newX, dY, dX))
-
+        for i in lines:
+            print("".join(i))
+        print("=" * 80)
     return sum([sum([1 for i in j if i == "#"]) for j in lines]) + len(mirs)
 
 
@@ -66,14 +66,20 @@ def part2(filename):
     lines = [list(i) for i in lines]
     ans = 0
     for i in range(len(lines)):
-        ans = max(ans, getHashtags(lines, i, -1, 0, 1))
-        ans = max(ans, getHashtags(lines, i, len(lines[0]), 0, -1))
+        ans = max(
+            ans,
+            getHashtags(lines, i, -1, 0, 1),
+            getHashtags(lines, i, len(lines[0]), 0, -1),
+        )
     for j in range(len(lines[0])):
-        ans = max(ans, getHashtags(lines, -1, j, 1, 0))
-        ans = max(ans, getHashtags(lines, len(lines), j, -1, 0))
+        ans = max(
+            ans,
+            getHashtags(lines, -1, j, 1, 0),
+            getHashtags(lines, len(lines), j, -1, 0),
+        )
     return ans
 
 
 if __name__ == "__main__":
-    print(part1("input.txt"))
-    print(part2("input.txt"))
+    print(part1("sample.txt"))
+    # print(part2("input.txt"))
