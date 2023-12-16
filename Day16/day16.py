@@ -1,9 +1,8 @@
 from pathlib import Path
 from pprint import *
 from math import *
-from functools import cache
-import numpy as np
 import copy
+
 
 def part1(filename):
     with Path(__file__).with_name(filename).open("r") as f:
@@ -76,12 +75,8 @@ def part1(filename):
         if (curY, curX, (dY, dX)) not in beams:
             beams.append((curY, curX, (dY, dX)))
 
-    for i in enumerate(lines):
-        for j in enumerate(i[1]):
-            if j[1] == "#":
-                tot += 1
+    return sum(1 for line in lines for char in line if char == "#") + tot
 
-    return tot
 
 def part2(filename):
     with Path(__file__).with_name(filename).open("r") as f:
@@ -90,9 +85,6 @@ def part2(filename):
 
     def getHashtags(lines, y, x, dy, dx):
         lines = copy.deepcopy(lines)
-        # for i in lines:
-        #     print(i)
-        # print('='*80)
         beams = [(y, x, (dy, dx))]
         seen = set()
         mirs = set()
@@ -107,10 +99,14 @@ def part2(filename):
                 seen.add((curY, curX, (dY, dX)))
             else:
                 continue
-            
-            if  0 <= curX < len(lines[0]) and 0<= curY < len(lines) and  lines[curY][curX] == "." :
+
+            if (
+                0 <= curX < len(lines[0])
+                and 0 <= curY < len(lines)
+                and lines[curY][curX] == "."
+            ):
                 lines[curY][curX] = "#"
-            
+
             newX = curX + dX
             newY = curY + dY
             if newX in [-1, len(lines[0])]:
@@ -162,22 +158,17 @@ def part2(filename):
             if (curY, curX, (dY, dX)) not in beams:
                 beams.append((curY, curX, (dY, dX)))
 
-        for i in enumerate(lines):
-            for j in enumerate(i[1]):
-                if j[1] == "#":
-                    tot += 1
-        # for i in lines:
-        #     print(i)
-        return tot
+        return sum(1 for line in lines for char in line if char == "#") + tot
+
     ans = 0
-    
+
     for i in range(len(lines)):
         ans = max(ans, getHashtags(lines, i, -1, 0, 1))
         ans = max(ans, getHashtags(lines, i, len(lines[0]), 0, -1))
     for j in range(len(lines[0])):
         ans = max(ans, getHashtags(lines, -1, j, 1, 0))
         ans = max(ans, getHashtags(lines, len(lines), j, -1, 0))
-        
+
     return ans
 
 
