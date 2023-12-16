@@ -22,8 +22,13 @@ def part1(filename):
             seen.add((curY, curX, (dY, dX)))
         else:
             continue
-        if lines[curY][curX] == "." and curX != -1:
+        if (
+            0 <= curX < len(lines[0])
+            and 0 <= curY < len(lines)
+            and lines[curY][curX] == "."
+        ):
             lines[curY][curX] = "#"
+
         newX = curX + dX
         newY = curY + dY
         if newX in [-1, len(lines[0])]:
@@ -75,7 +80,7 @@ def part1(filename):
         if (curY, curX, (dY, dX)) not in beams:
             beams.append((curY, curX, (dY, dX)))
 
-    return sum(1 for line in lines for char in line if char == "#") + tot
+    return sum([sum([1 for i in j if i == "#"]) for j in lines] + [tot])
 
 
 def part2(filename):
@@ -158,7 +163,7 @@ def part2(filename):
             if (curY, curX, (dY, dX)) not in beams:
                 beams.append((curY, curX, (dY, dX)))
 
-        return sum(1 for line in lines for char in line if char == "#") + tot
+        return sum([sum([1 for i in j if i == "#"]) for j in lines] + [tot])
 
     ans = 0
 
