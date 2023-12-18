@@ -7,22 +7,19 @@ import time
 def part1(filename):
     with Path(__file__).with_name(filename).open("r") as f:
         lines = f.read().splitlines()
-    lines = [i.split()[:2] for i in lines]
+    lines = [(int(i.split()[:2][1]), i.split()[:2][0])[::-1] for i in lines]
     dirs = {"R": (0, 1), "D": (1, 0), "L": (0, -1), "U": (-1, 0)}
     borders = []
     cX = cY = 0
-    ct = 0
     for line in lines:
         d, l = line
-        l = int(l)
-        ct += l
         dy, dx = dirs[d]
         borders.append((cY + dy * l, cX + dx * l + 1))
         cY, cX = cY + dy * l, cX + dx * l
-    t = 0
+    t = sum([i[1] for i in lines]) / 2 + 1
     for i, j in enumerate(borders[:-1]):
         t += (j[0] + borders[i + 1][0]) * (j[1] - borders[i + 1][1]) / 2
-    return int(t + ct / 2 + 1)
+    return int(t)
 
 
 def part2(filename):
@@ -36,17 +33,15 @@ def part2(filename):
     dirs = {"R": (0, 1), "D": (1, 0), "L": (0, -1), "U": (-1, 0)}
     borders = []
     cX = cY = 0
-    ct = 0
     for line in lines:
         d, l = line
-        ct += l
         dy, dx = dirs[d]
         borders.append((cY + dy * l, cX + dx * l + 1))
         cY, cX = cY + dy * l, cX + dx * l
-    t = 0
+    t = sum([i[1] for i in lines]) / 2 + 1
     for i, j in enumerate(borders[:-1]):
         t += (j[0] + borders[i + 1][0]) * (j[1] - borders[i + 1][1]) / 2
-    return int(t + ct / 2 + 1)
+    return int(t)
 
 
 if __name__ == "__main__":
