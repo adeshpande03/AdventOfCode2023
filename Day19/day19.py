@@ -23,15 +23,12 @@ def part1(filename):
             i = i.split("=")
             numsDict[i[0]] = int(i[1])
         numsList.append(numsDict)
-    # pprint(nums)
-    # pprint(numsList)
     flowList = {}
     for flow in flows:
         flow = flow[:-1]
         name, rule = flow.split("{")
         rule = rule.split(",")
         flowList[name] = rule
-    # pprint(flowList)
     A = []
     R = []
     for nums in numsList[::1]:
@@ -67,7 +64,6 @@ def part1(filename):
                 if j == True:
                     cur = rules[i].split(":")[1]
                     break
-
     ans = 0
     for i in A:
         for num in i:
@@ -180,6 +176,7 @@ def part2(filename):
                     Q.append((res, xl, xh, ml, mh, al, ah, sl, sh))
                     break
     return ans
+
 
 if __name__ == "__main__":
     print(part1("input.txt"))
