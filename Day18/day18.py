@@ -45,6 +45,5 @@ def part2(filename):
 
 
 if __name__ == "__main__":
-    s = time.perf_counter()
     print(part1("input.txt"))
     print(part2("input.txt"))
