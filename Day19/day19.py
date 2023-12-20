@@ -13,8 +13,7 @@ def part1(filename):
         lines = f.read()
     flows, nums = lines.split("\n\n")
     flows = [i.strip() for i in flows.split()]
-    nums = [i.strip() for i in nums.split()]
-    nums = [i[1:-1] for i in nums]
+    nums = [i.strip()[1:-1] for i in nums.split()]
     numsList = []
     for line in nums:
         numsDict = {}
@@ -84,30 +83,6 @@ def part2(filename):
     for rule in rules.split("\n"):
         name, rest = rule.split("{")
         R[name] = rest[:-1]
-
-    def accepted(part):
-        state = "in"
-        while True:
-            rule = R[state]
-            for cmd in rule.split(","):
-                applies = True
-                res = cmd
-                if ":" in cmd:
-                    cond, res = cmd.split(":")
-                    var = cond[0]
-                    op = cond[1]
-                    n = int(cond[2:])
-                    if op == ">":
-                        applies = part[var] > n
-                    else:
-                        applies = part[var] < n
-                if applies:
-                    if res == "A":
-                        return True
-                    if res == "R":
-                        return False
-                    state = res
-                    break
 
     def new_range(op, n, lo, hi):
         if op == ">":
