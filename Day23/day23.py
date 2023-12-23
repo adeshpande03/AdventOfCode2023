@@ -73,7 +73,7 @@ def part1(filename):
 def part2(filename):
     with Path(__file__).with_name(filename).open("r") as f:
         lines = f.read().splitlines()
-    edges = {} 
+    edges = {}
     for r, row in enumerate(lines):
         for c, v in enumerate(row):
             if v in ".>v":
@@ -117,9 +117,7 @@ def part2(filename):
         q.append((r, c, -1))
         for ar, ac, l in edges[(r, c)]:
             q.append((ar, ac, d + l))
-    return (best)
-        
-
+    return best
 
 
 if __name__ == "__main__":
