@@ -7,7 +7,7 @@ from functools import cache
 import numpy as np
 from sympy import symbols, Eq, solve
 import itertools
-from z3 import Int, Ints, Solver
+from z3 import Ints, Solver, Int
 
 def part1(filename):
     with Path(__file__).with_name(filename).open("r") as f:
